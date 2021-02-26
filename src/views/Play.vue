@@ -44,7 +44,6 @@
 </template>
 
 <script>
-// @ is an alias to /src import HelloWorld from "@/components/HelloWorld.vue";
 import { hiraganaToRomaji_Table, romajiToHiragana_Table } from "@/charTable.js";
 import popover from "@/components/bootstrap/Popover.vue";
 
