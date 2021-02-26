@@ -3,8 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="d-flex justify-content-between px-3 my-3">
-          <span class="score-text">Score: {{ score }}</span>
-          <span class="score-text">Errors: {{ totalErrorCount }}</span>
+          <span class="score-text">{{ `${$t("play.score")}: ${score}` }}</span>
+          <span class="score-text">{{
+            `${$t("play.errors")}: ${totalErrorCount}`
+          }}</span>
         </div>
       </div>
       <div class="">

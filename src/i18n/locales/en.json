@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "home": "Home"
+    },
+    "app": {
+        "start": "Start"
+    },
+    "play": {
+        "score": "Score",
+        "errors": "Errors"
+    }
+}
