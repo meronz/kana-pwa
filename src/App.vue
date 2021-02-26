@@ -31,8 +31,10 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import "./css/theme.scss";
+
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: $primary;
 }
 </style>
