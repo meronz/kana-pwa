@@ -1,7 +1,7 @@
 {
-  "name": "PWA Template",
-  "short_name": "PWA Template",
-  "description": "PWA template",
+  "name": "Kana!",
+  "short_name": "Kana!",
+  "description": "Learn the Hiragana and Katakana",
   "start_url": "/",
   "display": "fullscreen",
   "orientation": "portrait",
