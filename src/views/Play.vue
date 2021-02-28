@@ -1,58 +1,56 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row">
-        <div class="d-flex justify-content-between px-3 my-3">
-          <span class="score-text">{{ `${$t("play.score")}: ${score}` }}</span>
-          <span class="score-text">{{
-            `${$t("play.errors")}: ${totalErrorCount}`
-          }}</span>
+    <div class="flex justify-items-stretch justify-between">
+      <span class="mx-8 p-4">{{ `${t("play.score")}: ${score}` }}</span>
+
+      <span class="mx-8 p-4">{{
+        `${t("play.errors")}: ${totalErrorCount}`
+      }}</span>
+    </div>
+    <div class="flex justify-center">
+      <div class="flex-col text-gray-800 dark:text-gray-300">
+        <div
+          class="bg-white dark:bg-gray-600 h-24 w-24 p-4 mt-4 mx-auto rounded-3xl shadow-md text-center text-6xl"
+        >
+          <span>{{ shownChar }}</span>
         </div>
-      </div>
-      <div class="">
-        <div class="row justify-content-center my-3">
-          <div class="col-centered char-card">
-            <span class="charbig">{{ shownChar }}</span>
-          </div>
+        <div class="mt-4 lg:mt-16">
+          <input
+            class="bg-white dark:bg-gray-600 text-center rounded-3xl border border-transparent focus:outline-none focus:ring-0 focus:border-transparent"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            type="text"
+            v-model="textValue"
+          />
         </div>
-        <div class="row justify-content-center">
-          <div class="col-centered mt-3">
-            <input
-              v-model="textValue"
-              type="text"
-              :class="inputTextClass"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="off"
-              spellcheck="false"
-            />
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-centered mt-3">
-            <popover
-              v-if="showTooltip"
-              :content="getRomaji()"
-              trigger="hover"
-              placement="bottom"
+        <div class="">
+          <button
+            v-if="showTooltip"
+            class="has-tooltip mt-16 mx-auto text-xl text-center text-white border border-3 border-white rounded-full h-8 w-8 flex items-center justify-center focus:outline-none focus:ring-0"
+          >
+            <span
+              class="tooltip text-gray-800 dark:text-gray-300 dark:text-white bg-white dark:bg-gray-600 p-3 -mb-24 rounded"
+              >{{ getRomaji() }}</span
             >
-              <button id="tooltip-popover" class="btn btn-light">?</button>
-            </popover>
-          </div>
+            ?
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { useI18n } from "vue-i18n";
+const { t } = useI18n({ useScope: "global" });
+</script>
+
 <script>
-import { hiraganaToRomaji_Table, romajiToHiragana_Table } from "@/charTable.js";
-import popover from "@/components/bootstrap/Popover.vue";
+import { hiraganaToRomaji_Table, romajiToHiragana_Table } from "../charTable.js";
 
 export default {
-  name: "Home",
-  components: { popover },
-
   data: () => {
     return {
       shownChar: "",
@@ -122,33 +120,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.score-text {
-  font-size: 1dp;
-}
-
-.charbig {
-  font-size: 5em;
-  line-height: 1;
-}
-
-input {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.error-input {
-  border: 2px solid rgba(255, 0, 0, 0.5);
-}
-
-.col-centered {
-  flex: 0 0 0%;
-}
-
-.char-card {
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-  background: rgb(246, 252, 255);
-}
-</style>

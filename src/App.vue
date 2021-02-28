@@ -1,40 +1,21 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Kana!</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                to="/"
-                v-t="'nav.home'"
-              ></router-link>
-            </li>
-          </ul>
+  <div>
+    <div class="text-white min-h-screen bg-cyan-400 dark:bg-gray-800">
+      <div class="flex justify-start justify-items-end">
+        <div id="nav" class="pt-12 mx-8">
+          <router-link
+            :to="{ name: 'Home' }"
+            class="px-4 py-2 mx-2 rounded-3xl bg-white bg-opacity-30"
+            href="#"
+            v-t="'nav.home'"
+          >
+          </router-link>
         </div>
       </div>
-    </nav>
-    <router-view />
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-@import "./css/theme.scss";
-
-#nav a.router-link-exact-active {
-  color: $primary;
-}
-</style>
+<script setup>
+</script>

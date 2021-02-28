@@ -1,0 +1,22 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
+
+.has-tooltip:active .tooltip {
+  @apply visible z-50;
+}
+
+@tailwind utilities;
+
+body {
+  /* Disables scroll, pinch-to-zoom, etc. */
+  touch-action: none;
+}
