@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center">
+  <div class="flex h-screen justify-center items-center">
     <router-link to="/play">
       <big-button :msg="t('home.play')" />
     </router-link>
