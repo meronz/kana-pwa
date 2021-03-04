@@ -1,27 +1,13 @@
 <template>
-  <div class="container-fluid min-vh-100 d-flex flex-column">
-    <div class="row flex-grow-1">
-      <div class="row align-items-center">
-        <div class="d-flex justify-content-center align-items-center">
-          <router-link
-            tag="button"
-            to="/play"
-            class="btn btn-lg btn-primary big-button p-3"
-            v-t="'app.start'"
-          />
-        </div>
-      </div>
-    </div>
+  <div class="flex h-screen justify-center items-center">
+    <router-link to="/play">
+      <big-button :msg="t('home.play')" />
+    </router-link>
   </div>
 </template>
 
-<script>
-export default { name: "Home" };
+<script setup>
+import BigButton from "../components/BigButton.vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n({ useScope: "global" });
 </script>
-
-<style scoped>
-.big-button {
-  min-width: 500px;
-  min-width: 50%;
-}
-</style>
