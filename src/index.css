@@ -20,3 +20,26 @@ body {
   /* Disables scroll, pinch-to-zoom, etc. */
   touch-action: none;
 }
+
+html {
+  @apply text-white bg-cyan-400 dark:bg-gray-800;
+  overflow: hidden;
+}
+
+@supports (padding: max(0px)) {
+  html {
+    min-height: calc(100% + env(safe-area-inset-top));
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+  }
+}
+
+nav {
+  padding: env(safe-area-inset-top) 0 0 env(safe-area-inset-left);
+}
+
+.hide-focused {
+  @apply focus:outline-none focus:ring-0;
+}

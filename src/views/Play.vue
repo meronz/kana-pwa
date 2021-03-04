@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <div class="flex justify-items-stretch justify-between">
       <span class="mx-8 p-4">{{ `${t("play.score")}: ${score}` }}</span>
 
@@ -14,30 +14,26 @@
         >
           <span>{{ shownChar }}</span>
         </div>
-        <div class="mt-4 lg:mt-16">
-          <input
-            class="bg-white dark:bg-gray-600 text-center rounded-3xl border border-transparent focus:outline-none focus:ring-0 focus:border-transparent"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
-            type="text"
-            v-model="textValue"
-          />
-        </div>
-        <div class="">
+      </div>
+    </div>
+    <div class="flex flex-1 h-96 justify-center items-end">
+      <!-- <div class=""> -->
+
+      <div class="flex flex-wrap">
+        <div
+          v-for="(item, index) in suggestions"
+          :key="index"
+          class="w-1/2 flex justify-center"
+        >
           <button
-            v-if="showTooltip"
-            class="has-tooltip mt-16 mx-auto text-xl text-center text-white border border-3 border-white rounded-full h-8 w-8 flex items-center justify-center focus:outline-none focus:ring-0"
+            class="w-24 my-2 p-2 rounded-3xl bg-white bg-opacity-30 hide-focused text-xl"
+            v-on:click="textValue = item"
           >
-            <span
-              class="tooltip text-gray-800 dark:text-gray-300 dark:text-white bg-white dark:bg-gray-600 p-3 -mb-24 rounded"
-              >{{ getRomaji() }}</span
-            >
-            ?
+            {{ item }}
           </button>
         </div>
       </div>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -54,6 +50,7 @@ export default {
   data: () => {
     return {
       shownChar: "",
+      suggestions: [],
       textValue: "",
       inputTextClass: "",
       score: 0,
@@ -74,6 +71,46 @@ export default {
       ];
     },
 
+    getSuggestions: function() {
+      let suggestions = [];
+      var keys = Object.keys(hiraganaToRomaji_Table);
+
+      for (let i = 0; i < 5; i++) {
+        const s = hiraganaToRomaji_Table[
+          keys[Math.floor(keys.length * Math.random())]
+        ];
+
+        if(s == this.getRomaji()) {
+          i--;
+          continue;
+        }
+
+        suggestions.push(s);
+      }
+
+      suggestions.push(this.getRomaji());
+      return this.shuffle(suggestions);
+    },
+
+    shuffle: function(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    },
+
     clearError: function() {
       this.inputTextClass = "";
     },
@@ -84,6 +121,7 @@ export default {
       this.textValue = "";
       this.clearError();
       this.shownChar = this.getRandomHiragana();
+      this.suggestions = this.getSuggestions();
     },
 
     error: function() {
@@ -95,6 +133,7 @@ export default {
 
   mounted: function() {
     this.shownChar = this.getRandomHiragana();
+    this.suggestions = this.getSuggestions();
   },
 
   watch: {
